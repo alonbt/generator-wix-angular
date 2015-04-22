@@ -14,20 +14,20 @@ var Generator = module.exports = function Generator() {
 util.inherits(Generator, ScriptBase);
 
 Generator.prototype.rewriteAppJs = function () {
-  var coffee = this.env.options.coffee;
+  var typescript = this.env.options.typescript;
   var config = {
     file: path.join(
       this.env.options.appPath,
-      'scripts/app.' + (coffee ? 'coffee' : 'js')
+      'scripts/app.' + (typescript ? 'ts' : 'js')
     ),
     needle: '.otherwise',
     splicable: [
-      "  templateUrl: 'views/" + this.name + ".html'" + (coffee ? "" : "," ),
+      "  templateUrl: 'views/" + this.name + ".html'" + (typescript ? "" : "," ),
       "  controller: '" + this.classedName + "Ctrl'"
     ]
   };
 
-  if (coffee) {
+  if (typescript) {
     config.splicable.unshift(".when '/" + this.name + "',");
   }
   else {

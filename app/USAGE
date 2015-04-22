@@ -2,7 +2,7 @@ Description:
     Creates a default AngularJS app
 
 Example:
-    yo wix-angular [--coffee] [--minsafe]
+    yo wix-angular [--typescript] [--minsafe]
 
     This will create:
         Gruntfile.js

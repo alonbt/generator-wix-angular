@@ -66,7 +66,7 @@ describe('Angular generator', function () {
     });
   });
 
-  it('creates coffeescript files', function (done) {
+  it('creates typescript files', function (done) {
     var expected = ['app/styles/main.scss',
                     'app/views/main.haml',
                     ['.bowerrc', /"directory": "app\/bower_components"/],
@@ -74,10 +74,10 @@ describe('Angular generator', function () {
                     'replace.conf.js',
                     'package.json',
                     ['bower.json', /"name":\s+"temp"/],
-                    'app/scripts/app.coffee',
+                    'app/scripts/app.ts',
                     'app/index.vm',
-                    'app/scripts/controllers/main.coffee',
-                    'test/spec/controllers/main.coffee'
+                    'app/scripts/controllers/main.ts',
+                    'test/spec/controllers/main.ts'
                     ];
     helpers.mockPrompt(angular, {
       bootstrap: true,
@@ -85,7 +85,7 @@ describe('Angular generator', function () {
       modules: []
     });
 
-    angular.env.options.coffee = true;
+    angular.env.options.typescript = true;
     angular.run([], function () {
       helpers.assertFiles(expected);
       done();
@@ -159,7 +159,7 @@ describe('Angular generator', function () {
   describe('Service', function () {
     function serviceTest (generatorType, nameFn, done) {
       generatorTest(generatorType, 'service', 'services', nameFn, _.classify, '', done);
-    };
+    }
 
     it('should generate a new constant', function (done) {
       serviceTest('constant', _.camelize, done);

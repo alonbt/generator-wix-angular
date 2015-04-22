@@ -2,7 +2,7 @@ Description:
     Creates a new AngularJS filter
 
 Example:
-    yo wix-angular:filter thing [--coffee] [--minsafe]
+    yo wix-angular:filter thing [--typescript] [--minsafe]
 
     This will create:
         app/scripts/filters/thing.js

@@ -2,19 +2,13 @@
 'use strict';
 
 module.exports = function (grunt) {
-  var unitTestFiles = [];
-  require('./karma.conf.js')({set: function (karmaConf) {
-    unitTestFiles = karmaConf.files.filter(function (value) {
-      return value.indexOf('bower_component') !== -1;
-    });
-  }});
   require('wix-gruntfile')(grunt, {
     cdnify: 'vm',
     port: 9000,
     preloadModule: '<%= scriptAppName %>Internal',
     translationsModule: '<%= simplename %>Translations',
     svgFontName: '<%= _.slugify(_.humanize(simplename)) %>',
-    unitTestFiles: unitTestFiles,
+    karmaConf: require('./karma.conf.js'),
     protractor: true<% if (bowerComponent) { %>,
     bowerComponent: true<% } %>
   });
@@ -22,10 +16,18 @@ module.exports = function (grunt) {
   grunt.modifyTask('yeoman', {
     //the address to which your local /_api is proxied to (to workaround CORS issues)
     api: 'http://www.pizza.wixpress.com/_api/',
+    //api: 'http://localhost:3000',
+
+    //this is the node.js fake server that e2e tests will use
+    e2eTestServer: 'http://localhost:3333/',
+
     //the address that opens in your browser in grunt serve
     //(domain should be the same as staging so cookies will be sent in api requests)
     local: 'http://local.pizza.wixpress.com:<%%= connect.options.port %>/'
   });
+
+  //override sauce labs browser list
+  //process.env.SAUCE_BROWSERS = 'Chrome FF';
 
   try {
     require('./Gruntfile.private.js')(grunt); //override stuff locally

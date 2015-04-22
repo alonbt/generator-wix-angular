@@ -2,7 +2,7 @@ Description:
     Creates a new Wix dashboard widget
 
 Example:
-    yo wix-angular:dashboard-widget news-feed [--coffee] [--minsafe]
+    yo wix-angular:dashboard-widget news-feed [--typescript] [--minsafe]
 
     This will create:
         app/news-feed-widget.vm

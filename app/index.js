@@ -37,19 +37,19 @@ var Generator = module.exports = function Generator(args, options) {
 
   this.appPath = this.env.options.appPath;
 
-  if (typeof this.env.options.coffee === 'undefined') {
-    this.option('coffee', {
-      desc: 'Generate CoffeeScript instead of JavaScript'
+  if (typeof this.env.options.typescript === 'undefined') {
+    this.option('typescript', {
+      desc: 'Generate TypeScript instead of JavaScript'
     });
 
     // attempt to detect if user is using CS or not
     // if cml arg provided, use that; else look for the existence of cs
-    if (!this.options.coffee &&
-      this.expandFiles(path.join(this.appPath, '/scripts/**/*.coffee'), {}).length > 0) {
-      this.options.coffee = true;
+    if (!this.options.typescript &&
+      this.expandFiles(path.join(this.appPath, '/scripts/**/*.ts'), {}).length > 0) {
+      this.options.typescript = true;
     }
 
-    this.env.options.coffee = this.options.coffee;
+    this.env.options.typescript = this.options.typescript;
   }
 
   if (typeof this.env.options.minsafe === 'undefined') {
@@ -162,7 +162,7 @@ Generator.prototype.askForModules = function askForModules() {
     this.dashboardApp = (props.modules === 'dashboardApp');
     this.dashboardWidget = (props.modules === 'dashboardWidget');
 
-    var angMods = [this.simplename + 'Translations', 'wixAngular'];
+    var angMods = [this.simplename + 'Translations', 'wixAngular', 'wix.common.bi'];
 
     if (this.dashboardApp || this.dashboardWidget) {
       angMods.push('wixDashboardFramework');
@@ -406,6 +406,7 @@ Generator.prototype.packageFiles = function packageFiles() {
   this.template('../../templates/common/_bower.json', 'bower.json');
   this.template('../../templates/common/_package.json', 'package.json');
   this.template('../../templates/common/Gruntfile.js', 'Gruntfile.js');
+  this.template('../../templates/common/Gruntfile.private.js', 'Gruntfile.private.js');
   this.template('../../templates/common/karma.conf.js', 'karma.conf.js');
   this.template('../../templates/common/scenarios.js', 'test/e2e/spec/main-page.spec.js');
   this.copy('../../templates/common/project.sublime-project', this._.slugify(this._.humanize(this.simplename))+'.sublime-project');

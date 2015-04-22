@@ -2,7 +2,7 @@ Description:
     Creates a new Angular directive
 
 Example:
-    yo wix-angular:directive thing [--coffee] [--minsafe]
+    yo wix-angular:directive thing [--typescript] [--minsafe]
 
     This will create:
         app/scripts/directives/thing.js
