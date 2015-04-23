@@ -101,19 +101,22 @@ Generator.prototype.htmlTemplate = function (src, dest) {
 };
 
 Generator.prototype.addScriptToIndex = function (script) {
-  try {
     var appPath = this.env.options.appPath;
-    var fullPath = path.join(appPath, 'index.vm');
-    angularUtils.rewriteFile({
-      file: fullPath,
-      needle: ['<!-- endbuild --><!-- scripts -->', '<!-- endbuild -->'],
-      splicable: [
-        '<script src="scripts/' + script.replace('\\', '/') + '.js"></script>'
-      ]
+    var files = this.expandFiles('*.vm', { cwd: appPath });
+    files.forEach(function (file) {
+      try {
+        var fullPath = path.join(appPath, file);
+        angularUtils.rewriteFile({
+          file: fullPath,
+          needle: ['<!-- endbuild --><!-- scripts -->', '<!-- endbuild -->'],
+          splicable: [
+            '<script src="scripts/' + script.replace('\\', '/') + '.js"></script>'
+          ]
+        });
+      } catch (e) {
+        console.log('\nUnable to find '.yellow + fullPath + '. Reference to '.yellow + script + '.js ' + 'not added.\n'.yellow);
+      }
     });
-  } catch (e) {
-    console.log('\nUnable to find '.yellow + fullPath + '. Reference to '.yellow + script + '.js ' + 'not added.\n'.yellow);
-  }
 };
 
 Generator.prototype.generateSourceAndTest = function (appTemplate, testTemplate, targetDirectory, skipAdd) {
