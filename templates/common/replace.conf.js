@@ -8,7 +8,7 @@ module.exports = {
   '${metaSiteId}': 'c853c829-503e-48b1-892f-28d8c22a887c',<% } %>
 
   '${staticBaseUrl}': '//static.parastorage.com/',
-  '${staticsUrl}': '//localhost:9000/',<% if (dashboardApp) { %>
+  '${staticsUrl}': '',<% if (dashboardApp) { %>
 
   '#parse(\'views/my-account/embeds_head.vm\')': '',
   '#parse(\'views/my-account/embeds_body_top.vm\')': '',
