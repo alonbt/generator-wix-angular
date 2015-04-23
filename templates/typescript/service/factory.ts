@@ -1,23 +1,31 @@
 /// <reference path="../reference.ts" />
 'use strict';
 
-(function () {
+class <%= classedName %> {
+  meaningOfLife: string;
+  $interpolate: ng.IInterpolateService;
 
-  /* @ngInject */
-  function <%= cameledName %>Factory() {
-    function <%= classedName %>() {
-      var meaningOfLife = 42;
-
-      this.someMethod = function () {
-        return meaningOfLife;
-      };
-    }
-
-    return <%= classedName %>;
+  constructor(meaningOfLife) {
+    this.meaningOfLife = this.$interpolate('It is {{answer}}!')({answer: meaningOfLife});
   }
 
-  angular
-    .module('<%= scriptAppName %>Internal')
-    .factory('<%= classedName %>', <%= cameledName %>Factory);
+  /* @ngInject */
+  inject($interpolate) {
+    this.$interpolate = $interpolate;
+  }
 
-})();
+  getMeaningOfLife() {
+    return this.meaningOfLife;
+  }
+}
+
+angular
+  .module('<%= scriptAppName %>Internal')
+  .factory('<%= classedName %>', function($injector) {
+    return function() {
+      var instance = Object.create(<%= classedName %>.prototype);
+      $injector.invoke(instance.inject, instance);
+      <%= classedName %>.apply(instance, arguments);
+      return instance;
+    }
+  });

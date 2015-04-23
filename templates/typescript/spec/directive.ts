@@ -2,7 +2,7 @@
 'use strict';
 
 describe('Directive: <%= cameledName %>', () => {
-  var element, scope;
+  let element, scope;
 
   beforeEach(function () {
     module('<%= scriptAppName %>Internal');

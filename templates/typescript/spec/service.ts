@@ -2,7 +2,7 @@
 'use strict';
 
 describe('Service: <%= cameledName %>', () => {
-  var <%= cameledName %>;
+  let <%= cameledName %>;
 
   beforeEach(() => {
     module('<%= scriptAppName %>Internal');

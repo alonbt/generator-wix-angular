@@ -2,18 +2,18 @@
 'use strict';
 
 describe('Factory: <%= classedName %>', () => {
-  var <%= cameledName %>;
+  let <%= cameledName %>;
 
   beforeEach(() => {
     module('<%= scriptAppName %>Internal');
   });
 
   beforeEach(inject(<%= classedName %> => {
-    <%= cameledName %> = new <%= classedName %>();
+    <%= cameledName %> = new <%= classedName %>(42);
   }));
 
   it('should do something', () => {
-    expect(<%= cameledName %>.someMethod()).toBe(42);
+    expect(<%= cameledName %>.getMeaningOfLife()).toBe('It is 42!');
   });
 
 });

@@ -1,9 +1,6 @@
 /// <reference path="../reference.ts" />
 'use strict';
 
-// Private variables
-var salutation = 'Hello';
-
 class <%= classedName %> {
   salutation: string;
 
@@ -17,7 +14,7 @@ class <%= classedName %> {
   };
 }
 
-class <%= classedName %>Provider() {
+class <%= classedName %>Provider {
   salutation: string;
 
   /* @ngInject */
@@ -37,4 +34,4 @@ class <%= classedName %>Provider() {
 
 angular
   .module('<%= scriptAppName %>Internal')
-  .provider('<%= cameledName %>', <%= classedName %>);
+  .provider('<%= cameledName %>', <%= classedName %>Provider);

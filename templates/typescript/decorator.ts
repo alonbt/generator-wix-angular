@@ -1,16 +1,21 @@
 /// <reference path="../reference.ts" />
 'use strict';
 
-(function () {
-
+class <%= classedName %> {
   /* @ngInject */
-  function <%= cameledName %>($delegate) {
+  constructor() {
+
+  }
+
+  decorate($delegate) {
     // decorate the $delegate
     return $delegate;
   }
+}
 
-  angular
-    .module('<%= scriptAppName %>Internal')
-    .config($provide => $provide.decorator('$http', <%= cameledName %>));
-
-})();
+angular
+  .module('<%= scriptAppName %>Internal')
+  .config($provide => $provide.decorator('$http', ($injector, $delegate) => {
+    let <%= cameledName %> = $injector.instantiate(<%= classedName %>);
+    return <%= cameledName %>.decorate($delegate);
+  }));

@@ -2,7 +2,7 @@
 'use strict';
 
 describe('Controller: <%= classedName %>Controller', () => {
-  var <%= classedName %>Controller, scope;
+  let <%= classedName %>Controller, scope;
 
   beforeEach(() => {
     module('<%= scriptAppName %>Internal');
@@ -16,6 +16,6 @@ describe('Controller: <%= classedName %>Controller', () => {
   }));
 
   it('should attach a list of awesomeThings to the controller', () => {
-    expect(<%= classedName %>Controller.awesomeThings.length).toBe(6);
+    expect(<%= classedName %>Controller.awesomeThings.length).toBe(7);
   });
 });

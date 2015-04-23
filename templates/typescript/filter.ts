@@ -8,13 +8,13 @@ class <%= classedName %> {
   }
 
   filter(input) {
-    return '<%= cameledName %> filter: ' + input;
+    return `<%= cameledName %> filter: ${input}`;
   }
 }
 
 angular
   .module('<%= scriptAppName %>Internal')
   .filter('<%= cameledName %>', $injector => {
-    var <%= cameledName %> = $injector.instantiate(<%= classedName %>);
+    let <%= cameledName %> = $injector.instantiate(<%= classedName %>);
     return <%= cameledName %>.filter.bind(<%= cameledName %>);
   });

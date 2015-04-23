@@ -10,6 +10,7 @@ class <%= classedName %>Controller {
     this.$scope = $scope;
 
     this.awesomeThings = [
+      'Typescript',
       'Bower',
       'Grunt',
       'Haml',
@@ -19,8 +20,9 @@ class <%= classedName %>Controller {
     ];
   }
 
-  clickHandler() {
-    this.$scope.$emit('we are using controllerAs syntax, scope is used only for events and watches');
+  clickHandler(thing) {
+    //We are using controllerAs syntax, scope is used only for events and watches
+    this.$scope.$emit(`The ${thing} item was clicked!`);
   }
 }
 

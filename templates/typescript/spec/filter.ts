@@ -2,7 +2,7 @@
 'use strict';
 
 describe('Filter: <%= cameledName %>', () => {
-  var <%= cameledName %>;
+  let <%= cameledName %>;
 
   beforeEach(() => {
     module('<%= scriptAppName %>Internal');
@@ -13,8 +13,8 @@ describe('Filter: <%= cameledName %>', () => {
   }));
 
   it('should return the input prefixed with "<%= cameledName %> filter:"', () => {
-    var text = 'angularjs';
-    expect(<%= cameledName %>(text)).toBe('<%= cameledName %> filter: ' + text);
+    let text = 'angularjs';
+    expect(<%= cameledName %>(text)).toBe(`<%= cameledName %> filter: ${text}`);
   });
 
 });

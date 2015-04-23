@@ -4,6 +4,17 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var angularUtils = require('./util.js');
 
+yeoman.generators.Base.prototype.template = function template(source, destination, data) {
+  data = data || this;
+  destination = destination || source;
+
+  var body = this.read(source, 'utf8').replace(/\$\{/g, '(;$};)');
+  body = this.engine(body, data).replace(/\(;\$\};\)/g, '${');
+
+  this.write(destination, body);
+  return this;
+};
+
 var Generator = module.exports = function Generator() {
   yeoman.generators.NamedBase.apply(this, arguments);
 
