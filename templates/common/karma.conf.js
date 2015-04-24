@@ -31,6 +31,8 @@ module.exports = function (config) {
       'app/bower_components/wix-angular/dist/wix-angular.js',
       'app/bower_components/es5-shim/es5-shim.js',
       'app/bower_components/wix-bi-logger/dist/scripts/bi-logger/wix-bi-angular.js',
+      'app/bower_components/wix-js-sdk/Wix.js',
+      'app/bower_components/wix-ui-lib2/ui-lib.js',
       '{app,.tmp}/*.js',
       '{app,.tmp}/scripts/*.js',
       '{app,.tmp}/scripts/*/**/*.js',

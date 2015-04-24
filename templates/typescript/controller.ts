@@ -1,6 +1,8 @@
 /// <reference path="../reference.ts" />
 'use strict';
-
+<% if (name === 'settings') { %>
+declare var Wix: any;
+<% } %>
 class <%= classedName %>Controller {
   $scope: ng.IRootScopeService;
   awesomeThings: string[];
@@ -8,7 +10,9 @@ class <%= classedName %>Controller {
   /* @ngInject */
   constructor($scope) {
     this.$scope = $scope;
-
+<% if (name === 'settings') { %>
+    Wix.UI.initialize({});
+<% } %>
     this.awesomeThings = [
       'Typescript',
       'Bower',

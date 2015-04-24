@@ -30,7 +30,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="robots" content="noindex, nofollow">
 
-    <% if (!dashboardApp) { %><link rel="stylesheet" href="${staticBaseUrl}services/third-party/fonts/Helvetica/fontFace.css"><% } %>
+    <link rel="stylesheet" href="${staticBaseUrl}services/third-party/fonts/Helvetica/fontFace.css">
     <!-- process-tags prefix('${staticsUrl}') -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
@@ -50,17 +50,18 @@
     <wix-dashboard-site-menu dashboard-selected-item="dashboard"></wix-dashboard-site-menu>
     <div wix-dashboard-app>
       <!-- Add your site or application content here -->
-      <div class="container" ng-include="'views/main.html'"></div>
+      <div class="container" ng-include="'views/main.preload.html'"></div>
     </div>
     <% } else { %>
     <!-- Add your site or application content here -->
-    <div class="container" ng-include="'views/main.html'"></div>
+    <div class="container" ng-include="'views/main.preload.html'"></div>
     <% } %>
 
     <!-- process-tags prefix('${staticsUrl}') -->
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <% if (!dashboardApp) { %><script src="bower_components/angular-translate/angular-translate.js"></script><% } %>
+    <script src="bower_components/angular-translate/angular-translate.js"></script><% if (tpa) { %>
+    <script src="bower_components/wix-js-sdk/Wix.js"></script><% } %>
     <script src="bower_components/angular-i18n/angular-locale_${locale}.js"></script>
     <!-- build:locale({.tmp,app}) scripts/locale/messages_${locale}.js -->
     <script src="scripts/locale/messages_${locale}.js"></script>

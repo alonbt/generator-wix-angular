@@ -36,8 +36,9 @@ module.exports = function miniAppBase(appType) {
   Generator.prototype.createAppFile = function createAppFile() {
     this.angularModules = this.env.options.angularDeps;
 
+    var preload = (['settings', 'viewer'].indexOf(this.name) !== -1 ? '.preload' : '');
     this.template('../../templates/common/' + appType + '.html', 'app/' + this.name + '.vm');
-    this.template('../../templates/common/main.haml', 'app/views/' + this.name + '.haml');
+    this.template('../../templates/common/main.haml', 'app/views/' + this.name + preload + '.haml');
     this.copy('../../app/templates/styles/scss/main.scss', 'app/styles/' + this.name + '.scss');
   };
 

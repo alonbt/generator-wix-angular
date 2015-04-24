@@ -36,16 +36,22 @@
     <link rel="stylesheet" href="styles/viewer.css">
     <!-- endbuild -->
     <!-- end-process-tags -->
+    <style wix-style ng-non-bindable>
+      body {
+        color: {{style.myParam}};
+      }
+    </style>
     ${newRelicEndUserHeader}
   </head>
   <body>
     <!-- Add your site or application content here -->
-    <div class="container" ng-include="'views/viewer.html'"></div>
+    <div class="container" ng-include="'views/viewer.preload.html'"></div>
 
     <!-- process-tags prefix('${staticsUrl}') -->
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/wix-js-sdk/Wix.js"></script>
     <script src="bower_components/angular-i18n/angular-locale_${locale}.js"></script>
     <script src="scripts/locale/messages_${locale}.js"></script>
     <!-- build:js scripts/modules-viewer.js -->
