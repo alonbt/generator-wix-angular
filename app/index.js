@@ -75,6 +75,20 @@ var Generator = module.exports = function Generator(args, options) {
     options: {}
   });
 
+  this.hookFor('wix-angular:tpa-viewer', {
+    args: ['viewer'],
+    options: {options: {
+      'override-app-name': this.simplename + 'Viewer'
+    }}
+  });
+
+  this.hookFor('wix-angular:tpa-settings', {
+    args: ['settings'],
+    options: {options: {
+      'override-app-name': this.simplename + 'Settings'
+    }}
+  });
+
   this.hookFor('wix-angular:dashboard-widget', {
     args: [this._.slugify(this._.humanize(this.simplename))+'-widget'],
     options: {}
@@ -149,6 +163,9 @@ Generator.prototype.askForModules = function askForModules() {
       value: 'bowerComponent',
       name: 'bower component',
     }, {
+      value: 'tpa',
+      name: 'third party application',
+    }, {
       value: 'dashboardApp',
       name: 'wix-dashboard application',
     }, {
@@ -161,6 +178,7 @@ Generator.prototype.askForModules = function askForModules() {
     this.bowerComponent = (props.modules === 'bowerComponent');
     this.dashboardApp = (props.modules === 'dashboardApp');
     this.dashboardWidget = (props.modules === 'dashboardWidget');
+    this.tpa = (props.modules === 'tpa');
 
     var angMods = [this.simplename + 'Translations', 'wixAngular', 'wix.common.bi'];
 
@@ -175,7 +193,17 @@ Generator.prototype.askForModules = function askForModules() {
     if (this.dashboardWidget) {
       this.env.options.dashboardWidget = true;
     } else {
-      this._hooks.splice(-1);
+      this._hooks = this._hooks.filter(function (hook) {
+        return hook.name !== 'wix-angular:dashboard-widget';
+      });
+    }
+
+    if (this.tpa) {
+      this.env.options.tpa = true;
+    } else {
+      this._hooks = this._hooks.filter(function (hook) {
+        return hook.name !== 'wix-angular:tpa-viewer' && hook.name !== 'wix-angular:tpa-settings';
+      });
     }
 
     if (this.bowerComponent) {

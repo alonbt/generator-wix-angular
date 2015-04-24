@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- #if( false )
+  Prerequisites from server model:
+  --------------------------------
+  ${locale}, ${debug}, ${experiments},
+  ${newRelicEndUserHeader}, ${newRelicEndUserFooter}
+  ${clientTopology.<%= _.camelize(appname) %>StaticsUrl},
+  ${clientTopology.staticBaseUrl},
+
+  More details at: http://kb.wixpress.com/display/dashboard/How+to+integrate+server+with+index.vm
+#end -->
+<!--
+  #if( false )
+  DO NOT TOUCH!!
+  --------------
+  #end
+  #set( $languages = ["de","en","es","fr","it","ja","ko","pl","pt","ru","tr","nl","da"] )
+  #if( !$languages.contains($locale) )
+    #set( $locale = "en" )
+  #end
+  #set( $staticsUrl = $clientTopology.<%= _.camelize(appname) %>StaticsUrl )
+  #set( $staticBaseUrl = $clientTopology.staticBaseUrl )
+-->
+<html ng-app="<%= scriptAppName %>">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= appname %></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="stylesheet" href="${staticBaseUrl}services/third-party/fonts/Helvetica/fontFace.css">
+    <!-- process-tags prefix('${staticsUrl}') -->
+    <!-- build:css({.tmp,app}) styles/settings.css -->
+    <link rel="stylesheet" href="styles/settings.css">
+    <!-- endbuild -->
+    <!-- end-process-tags -->
+    ${newRelicEndUserHeader}
+  </head>
+  <body>
+    <!-- Add your site or application content here -->
+    <div class="container" ng-include="'views/settings.html'"></div>
+
+    <!-- process-tags prefix('${staticsUrl}') -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-i18n/angular-locale_${locale}.js"></script>
+    <script src="scripts/locale/messages_${locale}.js"></script>
+    <!-- build:js scripts/modules-settings.js -->
+    <script src="bower_components/uri.js/src/URI.js"></script>
+    <script src="bower_components/wix-angular/dist/wix-angular.js"></script>
+    <script src="bower_components/wix-bi-logger/dist/scripts/bi-logger/wix-bi-angular.js"></script>
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts-settings.js -->
+    <script src="scripts/settings.js"></script>
+    <script src="scripts/controllers/settings.js"></script>
+    <!-- endbuild --><!-- scripts -->
+    <!-- end-process-tags -->
+
+    <script>
+      angular.module('<%= scriptAppName %>').config(function (wixAngularTopologyProvider, experimentManagerProvider) {
+        wixAngularTopologyProvider.setStaticsUrl('${staticsUrl}');
+        experimentManagerProvider.setExperiments(${experiments});
+      });
+    </script>
+    ${newRelicEndUserFooter}
+  </body>
+</html>

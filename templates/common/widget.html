@@ -6,6 +6,8 @@
     <title><%= _.camelize(name) %></title>
     <meta name="viewport" content="width=device-width">
 
+    <link rel="stylesheet" href="bower_components/wix-dashboard-framework-statics/dist/styles/main.css">
+    <link rel="stylesheet" href="//static.parastorage.com/services/third-party/fonts/Helvetica/fontFace.css">
     <!-- build:css({.tmp,app}) styles/<%= name %>.css -->
     <link rel="stylesheet" href="styles/<%= name %>.css">
     <!-- endbuild -->
@@ -18,17 +20,20 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/angular-i18n/angular-locale_${locale}.js"></script>
-    <script src="scripts/locale/messages_${locale}.js"></script>
     <script src="bower_components/uri.js/src/URI.js"></script>
     <script src="bower_components/wix-angular/dist/wix-angular.js"></script>
+    <script src="bower_components/wix-bi-logger/dist/scripts/bi-logger/wix-bi-angular.js"></script>
+    <script src="bower_components/wix-dashboard-framework-statics/dist/concat/scripts/scripts.js"></script>
+    <script src="bower_components/dashboard-ui-components/dist/scripts/dashboard-ui-components.js"></script>
+    <script src="bower_components/wix-dashboard-framework-statics/dist/scripts/locale/messages_${locale}.js"></script>
+    <script src="bower_components/dashboard-ui-components/dist/scripts/locale/common_${locale}.js"></script>
+    <script src="scripts/locale/messages_${locale}.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/<%= name %>.js -->
     <script src="scripts/<%= name %>.js"></script>
     <script src="scripts/controllers/<%= name %>.js"></script>
     <!-- endbuild -->
 
-    <!-- wix-dashboard-menu -->
-    <script src="${clientTopology.publicUrl}my-account/framework.js?debug=${debug}"></script>
-    <!-- end-wix-dashboard-menu -->
+    <script src="bower_components/wix-dashboard-framework-statics/dist/dashboard-config.js"></script>
   </body>
 </html>
