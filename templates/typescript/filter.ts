@@ -4,7 +4,7 @@
 class <%= classedName %> {
   /* @ngInject */
   constructor() {
-
+    //
   }
 
   filter(input) {

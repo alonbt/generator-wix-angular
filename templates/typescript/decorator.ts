@@ -4,7 +4,7 @@
 class <%= classedName %> {
   /* @ngInject */
   constructor() {
-
+    //
   }
 
   decorate($delegate) {

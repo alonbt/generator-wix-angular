@@ -27,5 +27,5 @@ angular
       $injector.invoke(instance.inject, instance);
       <%= classedName %>.apply(instance, arguments);
       return instance;
-    }
+    };
   });
