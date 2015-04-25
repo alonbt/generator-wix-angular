@@ -7,7 +7,7 @@ class <%= classedName %> {
     //
   }
 
-  decorate($delegate) {
+  decorate($delegate: ng.IHttpService) {
     // decorate the $delegate
     return $delegate;
   }

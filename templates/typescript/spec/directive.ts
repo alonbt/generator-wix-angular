@@ -2,7 +2,8 @@
 'use strict';
 
 describe('Directive: <%= cameledName %>', () => {
-  let element, scope;
+  let element: ng.IAugmentedJQuery;
+  let scope: ng.IRootScopeService;
 
   beforeEach(function () {
     module('<%= scriptAppName %>Internal');

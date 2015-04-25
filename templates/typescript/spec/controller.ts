@@ -2,20 +2,21 @@
 'use strict';
 
 describe('Controller: <%= classedName %>Controller', () => {
-  let <%= classedName %>Controller, scope;
+  let <%= cameledName %>: <%= classedName %>Controller;
+  let scope: ng.IRootScopeService;
 
   beforeEach(() => {
     module('<%= scriptAppName %>Internal');
   });
 
-  beforeEach(inject(($controller, $rootScope) => {
+  beforeEach(inject(($controller: ng.IControllerService, $rootScope: ng.IRootScopeService) => {
     scope = $rootScope.$new();
-    <%= classedName %>Controller = $controller('<%= classedName %>Controller', {
+    <%= cameledName %> = $controller('<%= classedName %>Controller', {
       $scope: scope
     });
   }));
 
   it('should attach a list of awesomeThings to the controller', () => {
-    expect(<%= classedName %>Controller.awesomeThings.length).toBe(7);
+    expect(<%= cameledName %>.awesomeThings.length).toBe(7);
   });
 });

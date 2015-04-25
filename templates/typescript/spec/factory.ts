@@ -2,7 +2,7 @@
 'use strict';
 
 describe('Factory: <%= classedName %>', () => {
-  let <%= cameledName %>;
+  let <%= cameledName %>: <%= classedName %>;
 
   beforeEach(() => {
     module('<%= scriptAppName %>Internal');

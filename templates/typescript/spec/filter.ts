@@ -2,13 +2,13 @@
 'use strict';
 
 describe('Filter: <%= cameledName %>', () => {
-  let <%= cameledName %>;
+  let <%= cameledName %>: Function;
 
   beforeEach(() => {
     module('<%= scriptAppName %>Internal');
   });
 
-  beforeEach(inject($filter => {
+  beforeEach(inject(($filter: ng.IFilterService) => {
     <%= cameledName %> = $filter('<%= cameledName %>');
   }));
 

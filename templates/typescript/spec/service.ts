@@ -2,13 +2,13 @@
 'use strict';
 
 describe('Service: <%= cameledName %>', () => {
-  let <%= cameledName %>;
+  let <%= cameledName %>: <%= classedName %>;
 
   beforeEach(() => {
     module('<%= scriptAppName %>Internal');
   });
 
-  beforeEach(inject(_<%= cameledName %>_ => {
+  beforeEach(inject((_<%= cameledName %>_: <%= classedName %>) => {
     <%= cameledName %> = _<%= cameledName %>_;
   }));
 
