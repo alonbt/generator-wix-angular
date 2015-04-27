@@ -1,10 +1,10 @@
-.hero-unit{:"ng-controller" => "<%= classedName %>Controller as <%= cameledName %>"}
+.hero-unit(ng-controller="<%= classedName %>Controller as <%= cameledName %>")
   %h1
     {{'general.YO' | translate}}
     %i.logo-on-header.<%= _.slugify(_.humanize(appname)) %>-svg-font-icons-wix-logo
   %p You now have
   %ul
-    %li{:"ng-repeat" => "thing in <%= cameledName %>.awesomeThings"} {{thing}}
+    %li(ng-repeat="thing in <%= cameledName %>.awesomeThings") {{thing}}
   %p installed.
   %p
     This project uses wix-style bower component. that means that you can easily implement html components with simple classes such as
