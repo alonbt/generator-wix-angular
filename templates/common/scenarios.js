@@ -16,7 +16,7 @@ describe('<%= _.camelize(appname) %>App Main Page', function () {
   });
 
   afterEach(function () {
-    browser.removeMockModule('<%= scriptAppName %>Mocks');
+    browser.clearMockModule();
     biLoggerTestKit.assertEmpty();
   });
 
