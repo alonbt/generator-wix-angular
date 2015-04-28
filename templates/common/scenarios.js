@@ -12,11 +12,11 @@ describe('<%= _.camelize(appname) %>App Main Page', function () {
   beforeEach(function () {
     mainPage = new MainPage();
     experimentManager.setExperiments({});
-    browser.addMockModules('<%= scriptAppName %>Mocks', function () {});
+    browser.addMockModule('<%= scriptAppName %>Mocks', function () {});
   });
 
   afterEach(function () {
-    browser.clearMockModule();
+    browser.clearMockModules();
     biLoggerTestKit.assertEmpty();
   });
 
