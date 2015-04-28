@@ -24,7 +24,7 @@ angular
   .factory('<%= classedName %>', function($injector) {
     return function() {
       var instance = Object.create(<%= classedName %>.prototype);
-      $injector.invoke(instance.inject, instance);
+      $injector.invoke(instance.inject || angular.noop, instance);
       <%= classedName %>.apply(instance, arguments);
       return instance;
     };
