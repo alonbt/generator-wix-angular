@@ -7,7 +7,7 @@ class <%= classedName %> {
     //
   }
 
-  filter(input) {
+  filter(input: string): string {
     return `<%= cameledName %> filter: ${input}`;
   }
 }

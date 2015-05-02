@@ -3,7 +3,7 @@
 
 describe('Controller: <%= classedName %>Controller', () => {
   let <%= cameledName %>: <%= classedName %>Controller;
-  let scope: ng.IRootScopeService;
+  let scope: ng.IScope;
 
   beforeEach(() => {
     module('<%= scriptAppName %>Internal');

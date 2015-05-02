@@ -9,7 +9,7 @@ class <%= classedName %> {
     this.meaningOfLife = 42;
   }
 
-  someMethod() {
+  someMethod(): number {
     return this.meaningOfLife;
   }
 }

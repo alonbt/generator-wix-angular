@@ -84,7 +84,7 @@
     <!-- endbuild -->
     <script>
       /* jshint ignore:start */
-      if (${enableMocks}) {
+      if ('${enableMocks}' === 'true') {
         angular.module('<%= scriptAppName %>').requires.push('<%= scriptAppName %>Mocks');
       }
     </script>
@@ -92,7 +92,7 @@
     <script>
       angular.module('<%= scriptAppName %>').config(function (wixAngularTopologyProvider, experimentManagerProvider) {
         wixAngularTopologyProvider.setStaticsUrl('${staticsUrl}');
-        experimentManagerProvider.setExperiments(${experiments});
+        experimentManagerProvider.setExperiments(JSON.parse('${experiments}'));
       });
     </script>
     <% if (dashboardApp) { %>

@@ -13,7 +13,7 @@ describe('Filter: <%= cameledName %>', () => {
   }));
 
   it('should return the input prefixed with "<%= cameledName %> filter:"', () => {
-    let text = 'angularjs';
+    let text: string = 'angularjs';
     expect(<%= cameledName %>(text)).toBe(`<%= cameledName %> filter: ${text}`);
   });
 

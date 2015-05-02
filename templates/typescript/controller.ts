@@ -4,11 +4,11 @@
 declare var Wix: any;
 <% } %>
 class <%= classedName %>Controller {
-  $scope: ng.IRootScopeService;
+  $scope: ng.IScope;
   awesomeThings: string[];
 
   /* @ngInject */
-  constructor($scope) {
+  constructor($scope: ng.IScope) {
     this.$scope = $scope;
 <% if (name === 'settings') { %>
     Wix.UI.initialize({});
@@ -24,7 +24,7 @@ class <%= classedName %>Controller {
     ];
   }
 
-  clickHandler(thing) {
+  clickHandler(thing: string) {
     //We are using controllerAs syntax, scope is used only for events and watches
     this.$scope.$emit(`The ${thing} item was clicked!`);
   }

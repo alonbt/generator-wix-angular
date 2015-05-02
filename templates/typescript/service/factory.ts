@@ -5,16 +5,16 @@ class <%= classedName %> {
   meaningOfLife: string;
   $interpolate: ng.IInterpolateService;
 
-  constructor(meaningOfLife) {
-    this.meaningOfLife = this.$interpolate('It is {{answer}}!')({answer: meaningOfLife});
-  }
-
   /* @ngInject */
-  inject($interpolate) {
+  inject($interpolate: ng.IInterpolateService) {
     this.$interpolate = $interpolate;
   }
 
-  getMeaningOfLife() {
+  constructor(meaningOfLife: number) {
+    this.meaningOfLife = this.$interpolate('It is {{answer}}!')({answer: meaningOfLife});
+  }
+
+  getMeaningOfLife(): string {
     return this.meaningOfLife;
   }
 }

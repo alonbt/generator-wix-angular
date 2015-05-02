@@ -3,7 +3,7 @@
 
 class <%= classedName %> {
   /* @ngInject */
-  constructor($scope, $element) {
+  constructor($scope: ng.IScope, $element: ng.IAugmentedJQuery) {
     $element.text('this is the <%= cameledName %> directive');
   }
 }

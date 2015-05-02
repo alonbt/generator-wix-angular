@@ -5,11 +5,11 @@ class <%= classedName %> {
   salutation: string;
 
   /* @ngInject */
-  constructor(provider) {
+  constructor(provider: <%= classedName %>Provider) {
     this.salutation = provider.salutation;
   }
 
-  greet() {
+  greet(): string {
     return this.salutation;
   };
 }
@@ -22,12 +22,12 @@ class <%= classedName %>Provider {
     this.salutation = 'Hello';
   }
 
-  setSalutation(salutation) {
+  setSalutation(salutation: string) {
     this.salutation = salutation;
   };
 
   /* @ngInject */
-  $get($injector) {
+  $get($injector: ng.auto.IInjectorService): <%= classedName %> {
     return $injector.instantiate(<%= classedName %>, {provider: this});
   };
 }
