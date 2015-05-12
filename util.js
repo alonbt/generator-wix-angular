@@ -1,22 +1,15 @@
 'use strict';
 var path = require('path');
 var fs = require('fs');
+var shell = require('shelljs');
 
+function getGitConfigValue(cmd) {
+  var result = null;
+  if (shell.which('git')) {
+    result = shell.exec('git config --get ' + cmd, { silent: true }).output.trim();
+  }
 
-module.exports = {
-  rewrite: rewrite,
-  rewriteFile: rewriteFile,
-  appName: appName
-};
-
-function rewriteFile (args) {
-  args.path = args.path || process.cwd();
-  var fullPath = path.join(args.path, args.file);
-
-  args.haystack = fs.readFileSync(fullPath, 'utf8');
-  var body = rewrite(args);
-
-  fs.writeFileSync(fullPath, body);
+  return result;
 }
 
 function escapeRegExp (str) {
@@ -63,6 +56,16 @@ function rewrite (args) {
   return lines.join('\n');
 }
 
+function rewriteFile (args) {
+  args.path = args.path || process.cwd();
+  var fullPath = path.join(args.path, args.file);
+
+  args.haystack = fs.readFileSync(fullPath, 'utf8');
+  var body = rewrite(args);
+
+  fs.writeFileSync(fullPath, body);
+}
+
 function appName (self) {
   var counter = 0, suffix = self.options['app-suffix'];
   // Have to check this because of generator bug #386
@@ -79,3 +82,10 @@ function appName (self) {
   }
   return suffix ? self._.classify(suffix) : '';
 }
+
+module.exports = {
+  rewrite: rewrite,
+  rewriteFile: rewriteFile,
+  appName: appName,
+  getGitConfigValue: getGitConfigValue
+};

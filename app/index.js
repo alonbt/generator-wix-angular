@@ -5,7 +5,6 @@ var angularUtils = require('../util.js');
 var spawn = require('child_process').spawn;
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
-var shell = require('shelljs');
 var Configstore = require('configstore');
 var packageName = require('../package').name;
 
@@ -241,8 +240,8 @@ Generator.prototype.requestPackgeDetails = function requestPackgeDetails() {
   var promptsDefaults = conf.get(STORAGE_SETTINGS_KEY);
   if(promptsDefaults === undefined) {
     promptsDefaults = {
-      owner: that.getGitConfigValue('user.name') || 'Shahar Talmi',
-      email: that.getGitConfigValue('user.email') || 'shahart@wix.com',
+      owner: angularUtils.getGitConfigValue('user.name') || 'Shahar Talmi',
+      email: angularUtils.getGitConfigValue('user.email') || 'shahart@wix.com',
       groupId: 'com.wixpress.cx'
     };
   }
@@ -394,17 +393,6 @@ Generator.prototype.createIndexHtml = function createIndexHtml() {
     this.write(path.join(this.appPath, 'index.vm'), this.indexFile);
   }
 };
-
-Generator.prototype.getGitConfigValue = function (cmd) {
-
-  var result = null;
-  if (shell.which('git')) {
-    result = shell.exec('git config --get ' + cmd, { silent: true }).output.trim();
-  }
-
-  return result;
-};
-
 
 Generator.prototype.packageFiles = function packageFiles() {
 

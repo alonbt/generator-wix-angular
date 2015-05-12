@@ -1,0 +1,11 @@
+{
+  "<%= name %>": {
+    "scope": "<%= scope %>",
+    "onlyForLoggedInUsers": <%= onlyForLoggedInUsers %>,
+    "owner": "<%= owner %>",
+    "testGroups": [
+      "false",
+      "true"
+    ]
+  }
+}
