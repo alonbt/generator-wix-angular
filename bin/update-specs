@@ -1,0 +1,93 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var xml2js = require('xml2js');
+var spawn = require('child_process').spawn;
+var http = require('http');
+var url = require('url');
+
+function parseTextNode(arr) {
+  return arr.join('').trim();
+}
+
+function postOptions(href) {
+  href = url.parse(href);
+  href.method = 'POST';
+  return href;
+}
+
+function makeRequest(options, callback) {
+  http.request(options, function (res) {
+    var data = '';
+    res.on('data', function (chunk) {
+      data += chunk;
+    }).on('end', function () {
+      if (data) {
+        try {
+          console.log(JSON.parse(data).errorDescription || JSON.stringify(JSON.parse(data), null, 2));
+        } catch (e) {
+          console.log(data);
+        }
+      }
+      if (callback) {
+        callback(res, data);
+      }
+    });
+  }).on('error', function (err) {
+    console.log(err.toString());
+  }).end();
+}
+
+var parser = new xml2js.Parser();
+fs.readFile('./pom.xml', function (err, data) {
+  if (err) {
+    console.log(err);
+    console.log('please make sure you run this command from the rood directory of the artifact');
+  } else {
+    parser.parseString(data, function (err, result) {
+      var host = 'app40.aus.wixpress.com';
+      var version = process.argv[2] === '--staging' ? process.argv[4] : process.argv[2];
+      var groupId = parseTextNode(result.project.groupId);
+      var artifactId = parseTextNode(result.project.artifactId);
+      if (process.argv.indexOf('--staging') !== -1) {
+        host = process.argv[process.argv.indexOf('--staging') + 1] + '.wixpress.com';
+      }
+
+      if (!version || !version.match(/^\d+\.\d+\.\d+$/)) {
+        console.log('invalid version:', version);
+        console.log('usage: update-specs artifact.version.number [--staging pizza]');
+      } else {
+        console.log('Updating experiments for:');
+        console.log('  host:      ', host);
+        console.log('  groupId:   ', groupId);
+        console.log('  artifactId:', artifactId);
+        console.log('  version:   ', version);
+        console.log('');
+
+        var api = url.format({
+          protocol: 'http',
+          hostname: host,
+          port: 27804,
+          pathname: '/wix-petri-specs-feeder-webapp/api/v1/',
+          query: {a: 'b'}
+        });
+        var req1 = url.resolve(api, url.format({
+          pathname: 'setJsonArtifactFeederConfig/' + groupId + '/' + artifactId,
+          query: {filePath: 'petri-experiments.json'}
+        }));
+        var req2 = url.resolve(api, url.format({
+          pathname: ['feedSpecsFromArtifact', groupId, artifactId, + version + '.'].join('/'),
+          query: {
+            user: 'test',
+            artifactPath: ['/var/www/static.wix.com/services', artifactId, version].join('/')
+          }
+        }));
+
+        makeRequest(postOptions(req1), function () {
+          makeRequest(postOptions(req2));
+        });
+      }
+
+    });
+  }
+});
