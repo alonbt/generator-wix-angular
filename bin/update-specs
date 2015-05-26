@@ -11,6 +11,7 @@ function parseTextNode(arr) {
 }
 
 function postOptions(href) {
+  console.log('\x1b[36m%s\x1b[0m', 'curl -X POST ' + href + '\n');  //cyan
   href = url.parse(href);
   href.method = 'POST';
   return href;
@@ -24,9 +25,9 @@ function makeRequest(options, callback) {
     }).on('end', function () {
       if (data) {
         try {
-          console.log(JSON.parse(data).errorDescription || JSON.stringify(JSON.parse(data), null, 2));
+          console.log('\x1b[33m%s\x1b[0m', JSON.parse(data).errorDescription || JSON.stringify(JSON.parse(data), null, 2));
         } catch (e) {
-          console.log(data);
+          console.log('\x1b[33m%s\x1b[0m', data);
         }
       }
       if (callback) {
@@ -68,12 +69,13 @@ fs.readFile('./pom.xml', function (err, data) {
           protocol: 'http',
           hostname: host,
           port: 27804,
-          pathname: '/wix-petri-specs-feeder-webapp/api/v1/',
-          query: {a: 'b'}
+          pathname: '/wix-petri-specs-feeder-webapp/api/v1/'
         });
         var req1 = url.resolve(api, url.format({
-          pathname: 'setJsonArtifactFeederConfig/' + groupId + '/' + artifactId,
-          query: {filePath: 'petri-experiments.json'}
+          pathname: ['setJsonArtifactFeederConfig', groupId, artifactId].join('/'),
+          query: {
+            filePath: 'petri-experiments.json'
+          }
         }));
         var req2 = url.resolve(api, url.format({
           pathname: ['feedSpecsFromArtifact', groupId, artifactId, version + '.'].join('/'),
