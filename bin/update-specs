@@ -76,7 +76,7 @@ fs.readFile('./pom.xml', function (err, data) {
           query: {filePath: 'petri-experiments.json'}
         }));
         var req2 = url.resolve(api, url.format({
-          pathname: ['feedSpecsFromArtifact', groupId, artifactId, + version + '.'].join('/'),
+          pathname: ['feedSpecsFromArtifact', groupId, artifactId, version + '.'].join('/'),
           query: {
             user: 'test',
             artifactPath: ['/var/www/static.wix.com/services', artifactId, version].join('/')
