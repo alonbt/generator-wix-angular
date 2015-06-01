@@ -179,7 +179,7 @@ Generator.prototype.askForModules = function askForModules() {
     this.dashboardWidget = (props.modules === 'dashboardWidget');
     this.tpa = (props.modules === 'tpa');
 
-    var angMods = [this.simplename + 'Translations', 'wixAngular', 'wix.common.bi'];
+    var angMods = [this.simplename + 'Translations', this.simplename + 'Preload', 'wixAngular', 'wix.common.bi'];
 
     if (this.dashboardApp || this.dashboardWidget) {
       angMods.push('wixDashboardFramework');
@@ -415,7 +415,7 @@ Generator.prototype.packageFiles = function packageFiles() {
   if (this.dashboardApp || !this.dashboardWidget) {
     this.classedName = 'Main';
     this.cameledName = 'main';
-    this.template('../../templates/common/main.haml', 'app/views/main.preload.haml');
+    this.template('../../templates/common/main.haml', 'app/views/main.haml');
   }
 
   this.template('../../templates/common/gitignore', '.gitignore');

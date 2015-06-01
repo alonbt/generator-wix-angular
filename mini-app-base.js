@@ -7,7 +7,7 @@ var yeoman = require('yeoman-generator');
 module.exports = function miniAppBase(appType) {
   var Generator = function Generator(args) {
     var suffix = appType;
-    if (args[0].substr(-1*suffix.length).toLowerCase() !== suffix) {
+    if (args[0].substr(-1 * suffix.length).toLowerCase() !== suffix) {
       args[0] += '-' + suffix;
     }
 
@@ -36,9 +36,8 @@ module.exports = function miniAppBase(appType) {
   Generator.prototype.createAppFile = function createAppFile() {
     this.angularModules = this.env.options.angularDeps;
 
-    var preload = (['settings', 'viewer'].indexOf(this.name) !== -1 ? '.preload' : '');
     this.template('../../templates/common/' + appType + '.html', 'app/' + this.name + '.vm');
-    this.template('../../templates/common/main.haml', 'app/views/' + this.name + preload + '.haml');
+    this.template('../../templates/common/main.haml', 'app/views/' + this.name + '.haml');
     this.copy('../../app/templates/styles/scss/main.scss', 'app/styles/' + this.name + '.scss');
   };
 

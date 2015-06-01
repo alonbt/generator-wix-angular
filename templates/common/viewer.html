@@ -45,7 +45,7 @@
   </head>
   <body>
     <!-- Add your site or application content here -->
-    <div class="container" ng-include="'views/viewer.preload.html'"></div>
+    <div class="container" ng-include="'views/viewer.html'"></div>
 
     <!-- process-tags prefix('${staticsUrl}') -->
     <script src="bower_components/jquery/jquery.js"></script>
@@ -61,6 +61,7 @@
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts-viewer.js -->
     <script src="scripts/viewer.js"></script>
+    <script src="views/viewer.html.js"></script>
     <script src="scripts/controllers/viewer.js"></script>
     <!-- endbuild --><!-- scripts -->
     <!-- end-process-tags -->

@@ -5,7 +5,7 @@ module.exports = function (grunt) {
   require('wix-gruntfile')(grunt, {
     cdnify: 'vm',
     port: 9000,
-    preloadModule: '<%= scriptAppName %>Internal',
+    preloadModule: '<%= simplename %>Preload',
     translationsModule: '<%= simplename %>Translations',
     svgFontName: '<%= _.slugify(_.humanize(simplename)) %>',
     karmaConf: require('./karma.conf.js'),
