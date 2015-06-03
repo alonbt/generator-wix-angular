@@ -25,7 +25,8 @@
     "test": "mocha"
   },
   "bin": {
-    "update-specs": "bin/update-specs"
+    "update-specs": "bin/update-specs",
+    "wixinstall": "bin/wixinstall"
   },
   "dependencies": {
     "chalk": "~0.2.1",

@@ -1,0 +1,7 @@
+#!/bin/bash
+git clean -xdf
+bundle install
+npm config set registry http://repo.dev.wix/artifactory/api/npm/npm-repos
+npm install
+$(npm bin)/bower install
+$(npm bin)/grunt build
