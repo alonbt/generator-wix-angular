@@ -15,4 +15,4 @@ app.route('/server-artifact-id/resource')
   });
 
 app.listen(process.argv[2] || 3000);
-
+console.log('listening...');
