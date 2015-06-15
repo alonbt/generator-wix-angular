@@ -1,5 +1,5 @@
 #!/bin/bash
-git clean -xdf
+git clean -xdf -e ".idea" -e "*.iml" -e "*.private.*"
 bundle install
 npm config set registry http://repo.dev.wix/artifactory/api/npm/npm-repos
 npm install
