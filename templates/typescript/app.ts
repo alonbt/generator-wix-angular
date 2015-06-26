@@ -1,4 +1,4 @@
-/// <reference path="reference.ts" />
+/// <reference path="../../reference.ts" />
 'use strict';
 
 //add services, directives, controllers, filters, etc. in this module
