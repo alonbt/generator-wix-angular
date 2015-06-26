@@ -1,4 +1,4 @@
-/// <reference path="../../reference.ts" />
+/// <reference path="../../../reference.ts" />
 'use strict';
 
 describe('Service: <%= cameledName %>', () => {
