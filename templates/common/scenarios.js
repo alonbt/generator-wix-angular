@@ -1,6 +1,5 @@
 'use strict';
 
-require('../lib/server-runner.js');
 require('../lib/matchers.protractor.js');
 var MainPage = require('../pages/main-page.js');
 var experimentManager = require('../../../app/bower_components/wix-angular/test/lib/experiment-manager-test-kit.js');

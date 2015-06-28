@@ -1,6 +1,6 @@
 'use strict';
 
-var config = require('./node_modules/wix-gruntfile/protractor-conf').config;
+var config = require('wix-gruntfile/protractor-conf').config;
 
 config.capabilities = {
   browserName: 'chrome'
