@@ -8,24 +8,26 @@ var app = express();
 app.use(bodyParser.json());
 app.use(session({
   secret: 'yoba',
-  cookie: {httpOnly: false}
+  cookie: {httpOnly: false},
+  resave: false,
+  saveUninitialized: true
 }));
 
 app.use(function (req, res, next) {
-  req.session.resources = req.session.resources || [];
-
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.setHeader('Pragma', 'no-cache');
   res.setHeader('Expires', 0);
   return next();
 });
 
+var storage = {};
 app.route('/server-artifact-id/resource')
   .get(function (req, res) {
-    res.send({resources: req.session.resources});
+    res.send({resources: storage[req.sessionID] || []});
   })
   .post(function (req, res) {
-    req.session.resources.push(req.body);
+    var data = storage[req.sessionID] || [];
+    storage[req.sessionID] = data.concat([req.body]);
     res.send({});
   });
 
