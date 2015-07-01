@@ -30,7 +30,7 @@
                 <version>2.2.1</version>
                 <configuration>
                     <descriptors>
-                        <descriptor>maven/assembly/tar.gz.xml</descriptor>
+                        <descriptor>node_modules/wix-gruntfile/tar.gz.xml</descriptor>
                     </descriptors>
                     <appendAssemblyId>false</appendAssemblyId>
                     <finalName>${project.artifactId}-${project.version}</finalName>
