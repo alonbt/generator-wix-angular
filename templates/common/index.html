@@ -37,7 +37,6 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
     <!-- end-process-tags -->
-
     <% if (dashboardApp) { %>
     #parse('views/my-account/embeds_head.vm')
     <% } else { %>
@@ -81,9 +80,15 @@
 
     <!-- #if( ${enableMocks} ) -->
     <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+    <% if (typescript) { %>
+    <!-- build:js(.tmp) scripts/mocks.js -->
+    <script src="test/mock/server-api.js"></script>
+    <!-- endbuild -->
+    <% } else { %>
     <!-- build:js(test) scripts/mocks.js -->
     <script src="mock/server-api.js"></script>
     <!-- endbuild -->
+    <% } %>
     <script>
       /* jshint ignore:start */
       if ('${enableMocks}' === 'true') {

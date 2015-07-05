@@ -51,6 +51,8 @@ var Generator = module.exports = function Generator(args, options) {
     this.env.options.typescript = this.options.typescript;
   }
 
+  this.typescript = this.env.options.typescript;
+
   if (typeof this.env.options.minsafe === 'undefined') {
     this.option('minsafe', {
       desc: 'Generate AngularJS minification safe code'
@@ -426,7 +428,11 @@ Generator.prototype.packageFiles = function packageFiles() {
   this.template('../../templates/common/karma.conf.js', 'karma.conf.js');
   this.template('../../templates/common/scenarios.js', 'test/e2e/spec/main-page.spec.js');
   this.copy('../../templates/common/project.sublime-project', this._.slugify(this._.humanize(this.simplename))+'.sublime-project');
-  this.template('../../templates/javascript/mock/server-api.js', 'test/mock/server-api.js');
+  if (this.env.options.typescript) {
+    this.template('../../templates/typescript/mock/server-api.ts', 'test/mock/server-api.ts');
+  } else {
+    this.template('../../templates/javascript/mock/server-api.js', 'test/mock/server-api.js');
+  }
 };
 
 Generator.prototype.imageFiles = function () {

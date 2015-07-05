@@ -1,3 +1,4 @@
+/// <reference path="../../reference.ts" />
 'use strict';
 
 angular.module('<%= scriptAppName %>Mocks', ['ngMockE2E'])
