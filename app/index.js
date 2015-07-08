@@ -126,7 +126,7 @@ util.inherits(Generator, yeoman.generators.Base);
 Generator.prototype.checkForUpdates = function checkForUpdates() {
   var cb = this.async();
   var notifier = updateNotifier({pkg: pkg, updateCheckInterval: 1, callback: function (error, update) {
-    if (update && update.latest !== update.current) {
+    if (update && update.type !== 'latest') {
       notifier.update = update;
       notifier.notify();
       process.exit();
