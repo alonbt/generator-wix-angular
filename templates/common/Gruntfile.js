@@ -3,8 +3,9 @@
 
 module.exports = function (grunt) {
   require('wix-gruntfile')(grunt, {
-    cdnify: 'vm',
+    version: '<%= pkg.version %>',
     port: 9000,
+    livereload: 35729,
     preloadModule: '<%= simplename %>Preload',
     translationsModule: '<%= simplename %>Translations',
     svgFontName: '<%= _.slugify(_.humanize(simplename)) %>',
@@ -28,14 +29,6 @@ module.exports = function (grunt) {
 
   //override sauce labs browser list
   //process.env.SAUCE_BROWSERS = 'Chrome FF';
-
-  try {
-    require('./Gruntfile.private.js')(grunt); //override stuff locally
-  } catch (err) {
-    if (err.code !== 'MODULE_NOT_FOUND') {
-      throw (err);
-    }
-  }
 
   //Follow this URL for instructions on how to override built-in definitions:
   //https://github.com/wix/wix-gruntfile/blob/master/README.md

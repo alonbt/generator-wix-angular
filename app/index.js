@@ -6,7 +6,9 @@ var spawn = require('child_process').spawn;
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var Configstore = require('configstore');
-var packageName = require('../package').name;
+var updateNotifier = require('update-notifier');
+var pkg = require('../package.json');
+var packageName = pkg.name;
 
 var Generator = module.exports = function Generator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
@@ -120,6 +122,18 @@ var Generator = module.exports = function Generator(args, options) {
 };
 
 util.inherits(Generator, yeoman.generators.Base);
+
+Generator.prototype.checkForUpdates = function checkForUpdates() {
+  var cb = this.async();
+  var notifier = updateNotifier({pkg: pkg, updateCheckInterval: 1, callback: function (error, update) {
+    if (update && update.latest !== update.current) {
+      notifier.update = update;
+      notifier.notify();
+      process.exit();
+    }
+    cb();
+  }});
+};
 
 Generator.prototype.askForBootstrap = function askForBootstrap() {
   this.bootstrap = false;
