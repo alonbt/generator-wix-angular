@@ -46,10 +46,11 @@ var Generator = module.exports = function Generator() {
   this.env.options.typescript = this.options.typescript;
   if (typeof this.env.options.typescript === 'undefined') {
     this.option('typescript');
+    this.option('forcejs');
 
     // attempt to detect if user is using CS or not
     // if cml arg provided, use that; else look for the existence of cs
-    if (!this.options.typescript &&
+    if (!this.options.typescript && !this.options.forcejs &&
       this.expandFiles(path.join(this.env.options.appPath, '/scripts/**/*.ts'), {}).length > 0) {
       this.options.typescript = true;
     }
