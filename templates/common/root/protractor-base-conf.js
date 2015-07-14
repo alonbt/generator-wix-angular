@@ -5,7 +5,7 @@ var serverInstance;
 
 module.exports.config = {
   onPrepare: function () {
-    serverInstance = serverRunner('test/e2e/lib/mock-server.js', ['3333']);
+    serverInstance = serverRunner('test/e2e/lib/fake-server.js', ['3333']);
   },
   onCleanUp: function () {
     serverInstance.kill();
