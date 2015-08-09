@@ -7,7 +7,7 @@
     "Gemfile*",
     "Gruntfile.js",
     "pom.xml",
-    "*.json",
+    "/*.json",
     "*.conf.js",
     "*-conf.js",
     "app/*",
