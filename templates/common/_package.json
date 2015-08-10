@@ -2,7 +2,8 @@
   "name": "<%= _.slugify(_.humanize(simplename)) %>",
   "version": "1.0.0",
   "scripts": {
-    "build": "node_modules/wix-gruntfile/scripts/build.sh"
+    "build": "node_modules/wix-gruntfile/scripts/build.sh",
+    "release": "node_modules/wix-gruntfile/scripts/release.sh"
   },
   "dependencies": {},
   "devDependencies": {
