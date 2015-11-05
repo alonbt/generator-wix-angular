@@ -431,7 +431,6 @@ Generator.prototype.packageFiles = function packageFiles() {
   this.template('../../templates/common/_bower.json', 'bower.json');
   this.template('../../templates/common/_package.json', 'package.json');
   this.template('../../templates/common/Gruntfile.js', 'Gruntfile.js');
-  this.template('../../templates/common/Gruntfile.private.js', 'Gruntfile.private.js');
   this.template('../../templates/common/karma.conf.js', 'karma.conf.js');
   this.template('../../templates/common/scenarios.js', 'test/e2e/spec/main-page.spec.js');
   this.copy('../../templates/common/project.sublime-project', this._.slugify(this._.humanize(this.simplename))+'.sublime-project');
