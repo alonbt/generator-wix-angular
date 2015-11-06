@@ -10,14 +10,6 @@
   More details at: http://kb.wixpress.com/display/dashboard/How+to+integrate+server+with+index.vm
 #end -->
 <!--
-  #if( false )
-  DO NOT TOUCH!!
-  --------------
-  #end
-  #set( $languages = ["de","en","es","fr","it","ja","ko","pl","pt","ru","tr","nl","da"] )
-  #if( !$languages.contains($locale) )
-    #set( $locale = "en" )
-  #end
   #set( $staticsUrl = $clientTopology.<%= simplename %>StaticsUrl )
   #set( $staticBaseUrl = $clientTopology.staticBaseUrl )
 -->
@@ -37,16 +29,10 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
     <!-- end-process-tags -->
-    <% if (dashboardApp) { %>
-    #parse('views/my-account/embeds_head.vm')
-    <% } else { %>
     ${newRelicEndUserHeader}
-    <% } %>
   </head>
   <body>
     <% if (dashboardApp) { %>
-    #parse('views/my-account/embeds_body_top.vm')
-
     <wix-dashboard-site-menu dashboard-selected-item="dashboard"></wix-dashboard-site-menu>
     <div wix-dashboard-app>
       <!-- Add your site or application content here -->
@@ -111,16 +97,6 @@
       });
     </script>
     <!-- end-wix-dashboard-menu -->
-
-    <!-- #if( false ) -->
-    <script>
-      angular.module('wixDashboardFramework').config(function (wixDashboardFrameworkConfig) {
-        wixDashboardFrameworkConfig.experiments = ${experiments};
-      });
-    </script>
-    <!-- #end -->
-
-    #parse('views/my-account/embeds_body_bottom.vm')
     <% } else { %>
     ${newRelicEndUserFooter}
     <% } %>
