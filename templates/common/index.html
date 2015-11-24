@@ -49,9 +49,6 @@
     <script src="bower_components/angular-translate/angular-translate.js"></script><% if (tpa) { %>
     <script src="bower_components/wix-js-sdk/Wix.js"></script><% } %>
     <script src="bower_components/angular-i18n/angular-locale_${locale}.js"></script>
-    <!-- build:locale({.tmp,app}) scripts/locale/messages_${locale}.js -->
-    <script src="scripts/locale/messages_${locale}.js"></script>
-    <!-- endbuild -->
     <!-- build:js scripts/modules.js -->
     <script src="bower_components/uri.js/src/URI.js"></script>
     <script src="bower_components/wix-angular/dist/wix-angular.js"></script>
@@ -60,8 +57,12 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="views/main.html.js"></script>
+    <script src="scripts/locale/messages_en.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <!-- endbuild --><!-- scripts -->
+    <!-- build:locale({.tmp,app}) scripts/locale/messages_${locale}.js -->
+    <script src="scripts/locale/messages_${locale}.js"></script>
+    <!-- endbuild -->
     <!-- end-process-tags -->
 
     <!-- #if( ${enableMocks} ) -->

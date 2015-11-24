@@ -3,10 +3,9 @@
 
 class <%= classedName %> {
   meaningOfLife: string;
-  $interpolate: ng.IInterpolateService;
 
   /* @ngInject */
-  inject($interpolate: ng.IInterpolateService) {
+  inject(private $interpolate: ng.IInterpolateService) {
     this.$interpolate = $interpolate;
   }
 

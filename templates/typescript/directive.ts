@@ -2,9 +2,11 @@
 'use strict';
 
 class <%= classedName %> {
+  name: string;
+
   /* @ngInject */
-  constructor($scope: ng.IScope, $element: ng.IAugmentedJQuery) {
-    $element.text('this is the <%= cameledName %> directive');
+  constructor(private $scope: ng.IScope, private $element: ng.IAugmentedJQuery) {
+    this.$element.text(`this is ${this.name}'s directive`);
   }
 }
 
@@ -15,7 +17,10 @@ angular
       template: '<div></div>',
       controller: <%= classedName %>,
       controllerAs: '<%= cameledName %>',
-      bindToController: true,
-      restrict: 'EA'
+      scope: {},
+      bindToController: {
+        name: '='
+      },
+      restrict: 'E'
     };
   });

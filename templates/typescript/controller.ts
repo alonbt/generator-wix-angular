@@ -4,11 +4,10 @@
 declare var Wix: any;
 <% } %>
 class <%= classedName %>Controller {
-  $scope: ng.IScope;
   awesomeThings: string[];
 
   /* @ngInject */
-  constructor($scope: ng.IScope) {
+  constructor(private $scope: ng.IScope) {
     this.$scope = $scope;
 <% if (name === 'settings') { %>
     Wix.UI.initialize({});
