@@ -1,13 +1,11 @@
 'use strict';
 
-function MainPage() {
-  this.navigate = function () {
+export class MainPage {
+  navigate() {
     browser.get('/');
-  };
+  }
 
-  this.getTitle = function () {
+  getTitle() {
     return $('h3');
-  };
+  }
 }
-
-module.exports = MainPage;

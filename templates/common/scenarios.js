@@ -1,25 +1,25 @@
 'use strict';
 
 require('../lib/matchers.protractor.js');
-var MainPage = require('../pages/main-page.js');
-var experimentManager = require('../../../app/bower_components/wix-angular/test/lib/experiment-manager-test-kit.js');
-var biLoggerTestKit = require('../../../app/bower_components/wix-bi-logger/test/lib/driver.js');
+let experimentManager = require('../../../app/bower_components/wix-angular/test/lib/experiment-manager-test-kit.js');
+let biLoggerTestKit = require('../../../app/bower_components/wix-bi-logger/test/lib/driver.js');
+import {MainPage} from '../pages/main-page.js';
 
-describe('<%= _.camelize(appname) %>App Main Page', function () {
-  var mainPage;
+describe('<%= _.camelize(appname) %>App Main Page', () => {
+  let mainPage;
 
-  beforeEach(function () {
+  beforeEach(() => {
     mainPage = new MainPage();
     experimentManager.setExperiments({});
-    browser.addMockModule('<%= scriptAppName %>Mocks', function () {});
+    browser.addMockModule('<%= scriptAppName %>Mocks', () => {});
   });
 
-  afterEach(function () {
+  afterEach(() => {
     browser.clearMockModules();
     biLoggerTestKit.assertEmpty();
   });
 
-  it('should load successfully', function () {
+  it('should load successfully', () => {
     mainPage.navigate();
     expect(mainPage.getTitle().getText()).toEqual('Enjoy coding! - Yeoman');
   });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('<%= scriptAppName %>Mocks', ['ngMockE2E'])
-  .run(function ($httpBackend) {
+  .run(($httpBackend: ng.IHttpBackendService) => {
     $httpBackend.whenGET(/.*/).passThrough();
     $httpBackend.whenPOST(/.*/).passThrough();
     $httpBackend.whenPUT(/.*/).passThrough();

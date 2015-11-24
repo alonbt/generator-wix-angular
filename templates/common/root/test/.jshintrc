@@ -17,6 +17,7 @@
   "smarttabs": true,
   "white": true,
   "node": true,
+  "esnext": true,
   "globals": {
     "_": false,
     "$": false,

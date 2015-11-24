@@ -6,5 +6,6 @@
   "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
   "disallowDanglingUnderscores": null,
   "requireSpaceBeforeObjectValues": true,
+  "requireSpacesInAnonymousFunctionExpression": null,
   "requireVarDeclFirst": null
 }
