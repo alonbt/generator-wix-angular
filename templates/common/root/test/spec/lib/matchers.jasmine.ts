@@ -22,10 +22,6 @@ beforeEach(function () {
         throw new Error('toHaveBeenCalledOnce does not take arguments, use toHaveBeenCalledWith');
       }
 
-      if (!jasmine.isSpy(this.actual)) {
-        throw new Error('Expected a spy, but got ' + jasmine.pp(this.actual) + '.');
-      }
-
       this.message = function () {
         var msg = 'Expected spy ' + this.actual.identity + ' to have been called once, but was ',
             count = this.actual.callCount;
