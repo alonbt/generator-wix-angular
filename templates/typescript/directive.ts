@@ -12,15 +12,13 @@ class <%= classedName %> {
 
 angular
   .module('<%= scriptAppName %>Internal')
-  .directive('<%= cameledName %>', () => {
-    return {
-      template: '<div></div>',
-      controller: <%= classedName %>,
-      controllerAs: '<%= cameledName %>',
-      scope: {},
-      bindToController: {
-        name: '='
-      },
-      restrict: 'E'
-    };
-  });
+  .directive('<%= cameledName %>', () => ({
+    template: '<div></div>',
+    controller: <%= classedName %>,
+    controllerAs: '<%= cameledName %>',
+    scope: {
+      name: '='
+    },
+    bindToController: true,
+    restrict: 'E'
+  }));
