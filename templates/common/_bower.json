@@ -25,6 +25,7 @@
     "angular": "~1.4.0",
     "angular-translate": "~1.1.0",
     "angular-i18n": "~1.4.0",
+    "es6-shim": "~0.33.13",
     "uri.js": "~1.13.1",
     "wix-angular": null,
     "wix-style": null,

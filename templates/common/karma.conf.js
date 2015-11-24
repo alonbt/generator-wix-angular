@@ -31,6 +31,7 @@ module.exports = function (config) {
       'app/bower_components/uri.js/src/URI.js',
       'app/bower_components/wix-angular/dist/wix-angular.js',
       'app/bower_components/es5-shim/es5-shim.js',
+      'app/bower_components/es6-shim/es6-shim.js',
       'app/bower_components/wix-bi-logger/dist/scripts/bi-logger/wix-bi-angular.js',<% if (tpa) { %>
       'app/bower_components/wix-js-sdk/Wix.js',
       'app/bower_components/wix-ui-lib2/ui-lib.js',<% } %>
