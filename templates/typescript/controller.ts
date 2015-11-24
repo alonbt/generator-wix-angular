@@ -8,7 +8,6 @@ class <%= classedName %>Controller {
 
   /* @ngInject */
   constructor(private $scope: ng.IScope) {
-    this.$scope = $scope;
 <% if (name === 'settings') { %>
     Wix.UI.initialize({});
 <% } %>
