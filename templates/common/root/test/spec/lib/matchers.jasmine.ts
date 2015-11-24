@@ -1,4 +1,14 @@
+/// <reference path="../../../reference.ts" />
 'use strict';
+
+declare module jasmine {
+  interface Matchers {
+    toEqualData(expected: any): boolean;
+    toHaveBeenCalledOnce(): boolean;
+    toBeOneOf(...expected: any[]): boolean;
+    toHaveClass(expected: string): boolean;
+  }
+}
 
 beforeEach(function () {
 
