@@ -28,7 +28,7 @@ class <%= classedName %>Provider {
 
   /* @ngInject */
   $get($injector: ng.auto.IInjectorService): <%= classedName %> {
-    return $injector.instantiate(<%= classedName %>, {provider: this});
+    return $injector.instantiate<<%= classedName %>>(<%= classedName %>, {provider: this});
   };
 }
 

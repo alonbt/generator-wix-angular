@@ -9,7 +9,7 @@ describe('Filter: <%= cameledName %>', () => {
   });
 
   beforeEach(inject(($filter: ng.IFilterService) => {
-    <%= cameledName %> = $filter('<%= cameledName %>');
+    <%= cameledName %> = $filter<Function>('<%= cameledName %>');
   }));
 
   it('should return the input prefixed with "<%= cameledName %> filter:"', () => {

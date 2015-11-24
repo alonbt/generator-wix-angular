@@ -11,7 +11,7 @@ describe('Controller: <%= classedName %>Controller', () => {
 
   beforeEach(inject(($controller: ng.IControllerService, $rootScope: ng.IRootScopeService) => {
     scope = $rootScope.$new();
-    <%= cameledName %> = $controller('<%= classedName %>Controller', {
+    <%= cameledName %> = $controller<<%= classedName %>Controller>('<%= classedName %>Controller', {
       $scope: scope
     });
   }));

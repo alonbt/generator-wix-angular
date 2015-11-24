@@ -2,10 +2,11 @@
 'use strict';
 
 class <%= classedName %> {
+  $interpolate: ng.IInterpolateService;
   meaningOfLife: string;
 
   /* @ngInject */
-  inject(private $interpolate: ng.IInterpolateService) {
+  inject($interpolate: ng.IInterpolateService) {
     this.$interpolate = $interpolate;
   }
 
