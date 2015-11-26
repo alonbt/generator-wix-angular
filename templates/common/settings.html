@@ -10,14 +10,6 @@
   More details at: http://kb.wixpress.com/display/dashboard/How+to+integrate+server+with+index.vm
 #end -->
 <!--
-  #if( false )
-  DO NOT TOUCH!!
-  --------------
-  #end
-  #set( $languages = ["de","en","es","fr","it","ja","ko","pl","pt","ru","tr","nl","da"] )
-  #if( !$languages.contains($locale) )
-    #set( $locale = "en" )
-  #end
   #set( $staticsUrl = $clientTopology.<%= _.camelize(appname) %>StaticsUrl )
   #set( $staticBaseUrl = $clientTopology.staticBaseUrl )
 -->
@@ -29,7 +21,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <meta name="robots" content="noindex, nofollow">
-
+    <meta name="referrer" content="origin">
+    <link type="image/png" href="//www.wix.com/favicon.ico" rel="shortcut icon">
     <link rel="stylesheet" href="${staticBaseUrl}services/third-party/fonts/Helvetica/fontFace.css">
     <!-- process-tags prefix('${staticsUrl}') -->
     <link rel="stylesheet" href="bower_components/wix-ui-lib2/ui-lib.min.css"></link>
@@ -41,7 +34,7 @@
   </head>
   <body>
     <!-- Add your site or application content here -->
-    <div class="container" ng-include="'views/settings.html'"></div>
+    <<%= _.dasherize(scriptAppName) %> name="'<%= scriptAppName %>'"></<%= _.dasherize(scriptAppName) %>>
 
     <!-- process-tags prefix('${staticsUrl}') -->
     <script src="bower_components/jquery/jquery.js"></script>
@@ -49,8 +42,8 @@
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/wix-js-sdk/Wix.js"></script>
     <script src="bower_components/angular-i18n/angular-locale_${locale}.js"></script>
-    <script src="scripts/locale/messages_${locale}.js"></script>
     <!-- build:js scripts/modules-settings.js -->
+    <script src="bower_components/es6-shim/es6-shim.js"></script>
     <script src="bower_components/wix-ui-lib2/ui-lib.js"></script>
     <script src="bower_components/uri.js/src/URI.js"></script>
     <script src="bower_components/wix-angular/dist/wix-angular.js"></script>
@@ -58,9 +51,13 @@
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts-settings.js -->
     <script src="scripts/settings.js"></script>
-    <script src="views/settings.html.js"></script>
-    <script src="scripts/controllers/settings.js"></script>
+    <script src="views/<%= _.dasherize(scriptAppName) %>.html.js"></script>
+    <script src="scripts/locale/messages_en.js"></script>
+    <script src="scripts/components/<%= _.dasherize(scriptAppName) %>.js"></script>
     <!-- endbuild --><!-- scripts -->
+    <!-- build:locale({.tmp,app}) scripts/locale/settings-${locale}.js -->
+    <script src="scripts/locale/messages_${locale}.js"></script>
+    <!-- endbuild -->
     <!-- end-process-tags -->
 
     <script>

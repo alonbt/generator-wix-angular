@@ -11,7 +11,7 @@ $enable-wix-style-css: true;
 // https://github.com/sapegin/grunt-webfont
 // ======================================================================
 
-@import '<%= _.slugify(_.humanize(simplename)) %>-svg-font-icons';
+@import '<%= _.slugify(_.humanize(appname)) %>-svg-font-icons';
 
 $bg-color: $wix-gray-lightest;
 

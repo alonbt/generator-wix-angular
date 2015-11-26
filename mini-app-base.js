@@ -22,11 +22,12 @@ module.exports = function miniAppBase(appType) {
       }}
     });
 
-    this.hookFor('wix-angular:controller', {
-      args: [this.name],
+    this.hookFor('wix-angular:component', {
+      args: [this._.dasherize(this.scriptAppName)],
       options: {options: {
         'override-app-name': this.options['override-app-name'] || this.cameledName,
-        'skip-add': true
+        'skip-add': true,
+        'template-url': 'views/' + this._.dasherize(this.scriptAppName) + '.html'
       }}
     });
   };
@@ -37,7 +38,7 @@ module.exports = function miniAppBase(appType) {
     this.angularModules = this.env.options.angularDeps;
 
     this.template('../../templates/common/' + appType + '.html', 'app/' + this.name + '.vm');
-    this.template('../../templates/common/main.haml', 'app/views/' + this.name + '.haml');
+    this.template('../../templates/common/main.haml', 'app/views/' + this._.dasherize(this.scriptAppName) + '.haml');
     this.copy('../../app/templates/styles/scss/main.scss', 'app/styles/' + this.name + '.scss');
   };
 

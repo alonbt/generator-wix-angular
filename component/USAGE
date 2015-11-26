@@ -1,0 +1,8 @@
+Description:
+    Creates a new Angular component
+
+Example:
+    yo wix-angular:component thing [--typescript] [--minsafe]
+
+    This will create:
+        app/scripts/components/thing.js

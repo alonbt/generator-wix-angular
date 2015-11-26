@@ -66,9 +66,11 @@ var Generator = module.exports = function Generator(args, options) {
     options: {}
   });
 
-  this.hookFor('wix-angular:controller', {
-    args: args,
-    options: {}
+  this.hookFor('wix-angular:component', {
+    args: [this._.dasherize(this.scriptAppName)],
+    options: {options: {
+      'template-url': 'views/' + this._.dasherize(this.scriptAppName) + '.html'
+    }}
   });
 
   this.hookFor('wix-angular:tpa-viewer', {
@@ -86,7 +88,7 @@ var Generator = module.exports = function Generator(args, options) {
   });
 
   this.hookFor('wix-angular:dashboard-widget', {
-    args: [this._.slugify(this._.humanize(this.simplename))+'-widget'],
+    args: [this._.slugify(this._.humanize(this.simplename)) + '-widget'],
     options: {}
   });
 
@@ -163,22 +165,22 @@ Generator.prototype.askForModules = function askForModules() {
     type: 'list',
     name: 'modules',
     default: 'none',
-    message: 'Which super powers would you like?',
+    message: 'What type of project is this?',
     choices: [{
       value: 'none',
-      name: 'none',
+      name: 'Standalone Application',
     }, {
       value: 'bowerComponent',
-      name: 'bower component',
+      name: 'Bower Component',
     }, {
       value: 'tpa',
-      name: 'third party application',
-    }, {
-      value: 'dashboardApp',
-      name: 'wix-dashboard application',
-    }, {
-      value: 'dashboardWidget',
-      name: 'wix-dashboard widget',
+      name: 'Wix TPA',
+    // }, {
+    //   value: 'dashboardApp',
+    //   name: 'wix-dashboard application',
+    // }, {
+    //   value: 'dashboardWidget',
+    //   name: 'wix-dashboard widget',
     }]
   }];
 
@@ -422,9 +424,8 @@ Generator.prototype.packageFiles = function packageFiles() {
   this.write('replace.private.conf.js', this.engine(replace, this).replace(/\(;\$\};\)/g, '${'));
 
   if (this.dashboardApp || !this.dashboardWidget) {
-    this.classedName = 'Main';
-    this.cameledName = 'main';
-    this.template('../../templates/common/main.haml', 'app/views/main.haml');
+    this.cameledName = this.scriptAppName;
+    this.template('../../templates/common/main.haml', 'app/views/' + this._.dasherize(this.scriptAppName) + '.haml');
   }
 
   this.template('../../templates/common/gitignore', '.gitignore');

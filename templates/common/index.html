@@ -36,11 +36,11 @@
     <wix-dashboard-site-menu dashboard-selected-item="dashboard"></wix-dashboard-site-menu>
     <div wix-dashboard-app>
       <!-- Add your site or application content here -->
-      <div class="container" ng-include="'views/main.html'"></div>
+      <<%= _.dasherize(scriptAppName) %> name="'<%= scriptAppName %>'"></<%= _.dasherize(scriptAppName) %>>
     </div>
     <% } else { %>
     <!-- Add your site or application content here -->
-    <div class="container" ng-include="'views/main.html'"></div>
+    <<%= _.dasherize(scriptAppName) %> name="'<%= scriptAppName %>'"></<%= _.dasherize(scriptAppName) %>>
     <% } %>
 
     <!-- process-tags prefix('${staticsUrl}') -->
@@ -57,9 +57,9 @@
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="views/main.html.js"></script>
+    <script src="views/<%= _.dasherize(scriptAppName) %>.html.js"></script>
     <script src="scripts/locale/messages_en.js"></script>
-    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/components/<%= _.dasherize(scriptAppName) %>.js"></script>
     <!-- endbuild --><!-- scripts -->
     <!-- build:locale({.tmp,app}) scripts/locale/messages_${locale}.js -->
     <script src="scripts/locale/messages_${locale}.js"></script>

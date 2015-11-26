@@ -10,14 +10,6 @@
   More details at: http://kb.wixpress.com/display/dashboard/How+to+integrate+server+with+index.vm
 #end -->
 <!--
-  #if( false )
-  DO NOT TOUCH!!
-  --------------
-  #end
-  #set( $languages = ["de","en","es","fr","it","ja","ko","pl","pt","ru","tr","nl","da"] )
-  #if( !$languages.contains($locale) )
-    #set( $locale = "en" )
-  #end
   #set( $staticsUrl = $clientTopology.<%= _.camelize(appname) %>StaticsUrl )
   #set( $staticBaseUrl = $clientTopology.staticBaseUrl )
 -->
@@ -45,7 +37,7 @@
   </head>
   <body>
     <!-- Add your site or application content here -->
-    <div class="container" ng-include="'views/viewer.html'"></div>
+    <<%= _.dasherize(scriptAppName) %> name="'<%= scriptAppName %>'"></<%= _.dasherize(scriptAppName) %>>
 
     <!-- process-tags prefix('${staticsUrl}') -->
     <script src="bower_components/jquery/jquery.js"></script>
@@ -53,17 +45,21 @@
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/wix-js-sdk/Wix.js"></script>
     <script src="bower_components/angular-i18n/angular-locale_${locale}.js"></script>
-    <script src="scripts/locale/messages_${locale}.js"></script>
     <!-- build:js scripts/modules-viewer.js -->
+    <script src="bower_components/es6-shim/es6-shim.js"></script>
     <script src="bower_components/uri.js/src/URI.js"></script>
     <script src="bower_components/wix-angular/dist/wix-angular.js"></script>
     <script src="bower_components/wix-bi-logger/dist/scripts/bi-logger/wix-bi-angular.js"></script>
     <!-- endbuild -->
     <!-- build:js({.tmp,app}) scripts/scripts-viewer.js -->
     <script src="scripts/viewer.js"></script>
-    <script src="views/viewer.html.js"></script>
-    <script src="scripts/controllers/viewer.js"></script>
+    <script src="views/<%= _.dasherize(scriptAppName) %>.html.js"></script>
+    <script src="scripts/locale/messages_en.js"></script>
+    <script src="scripts/components/<%= _.dasherize(scriptAppName) %>.js"></script>
     <!-- endbuild --><!-- scripts -->
+    <!-- build:locale({.tmp,app}) scripts/locale/viewer-${locale}.js -->
+    <script src="scripts/locale/messages_${locale}.js"></script>
+    <!-- endbuild -->
     <!-- end-process-tags -->
 
     <script>
