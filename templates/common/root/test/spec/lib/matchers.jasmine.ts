@@ -12,41 +12,30 @@ declare module jasmine {
 
 beforeEach(function () {
 
-  this.addMatchers({
-    toEqualData: function (expected) {
-      return angular.equals(this.actual, expected);
-    },
+  jasmine.addMatchers({
+    toEqualData: () => ({compare: (actual, expected) => {
+      return {pass: angular.equals(actual, expected)};
+    }}),
 
-    toHaveBeenCalledOnce: function () {
-      if (arguments.length > 0) {
-        throw new Error('toHaveBeenCalledOnce does not take arguments, use toHaveBeenCalledWith');
+    toHaveBeenCalledOnce: () => ({compare: (actual) => {
+      let msg = 'Expected spy ' + actual.identity + ' to have been called once, but was ',
+          count = actual.calls.count();
+      if (count === 1) {
+        return {pass: true, message: msg.replace('to have', 'not to have') + 'called once.'};
+      } else {
+        return {pass: false, message: count === 0 ? msg + 'never called.' :
+                                                    msg + 'called ' + count + ' times.'};
       }
+    }}),
 
-      this.message = function () {
-        var msg = 'Expected spy ' + this.actual.identity + ' to have been called once, but was ',
-            count = this.actual.callCount;
-        return [
-          count === 0 ? msg + 'never called.' :
-                        msg + 'called ' + count + ' times.',
-          msg.replace('to have', 'not to have') + 'called once.'
-        ];
-      };
+    toBeOneOf: () => ({compare: (actual, ...expected) => {
+      return {pass: expected.indexOf(actual) !== -1};
+    }}),
 
-      return this.actual.callCount === 1;
-    },
-
-    toBeOneOf: function () {
-      return Array.prototype.slice.call(arguments).indexOf(this.actual) !== -1;
-    },
-
-    toHaveClass: function (clazz) {
-      this.message = function () {
-        var msg = 'Expected \'' + angular.mock.dump(this.actual) + '\' to have class \'' + clazz + '\'.';
-        return [msg, msg.replace('to have', 'not to have')];
-      };
-      return this.actual.hasClass ?
-              this.actual.hasClass(clazz) :
-              angular.element(this.actual).hasClass(clazz);
-    }
+    toHaveClass: () => ({compare: (actual, expected) => {
+      let msg = 'Expected \'' + angular.mock.dump(this.actual) + '\' to have class \'' + expected + '\'.';
+      let pass = actual.hasClass ? actual.hasClass(expected) : angular.element(actual).hasClass(expected);
+      return {pass, message: pass ? msg.replace('to have', 'not to have') : msg};
+    }})
   });
 });

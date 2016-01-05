@@ -29,6 +29,7 @@ module.exports = function (grunt) {
 
   //override sauce labs browser list
   //process.env.SAUCE_BROWSERS = 'Chrome FF';
+  process.env.USE_JASMINE2 = 'true';
 
   //Follow this URL for instructions on how to override built-in definitions:
   //https://github.com/wix/wix-gruntfile/blob/master/README.md
