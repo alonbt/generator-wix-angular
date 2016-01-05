@@ -34,9 +34,7 @@
     "shelljs": "^0.3.0",
     "update-notifier": "^0.5.0",
     "xml2js": "^0.4.8",
-    "yeoman-generator": "~0.13.0"
-  },
-  "peerDependencies": {
+    "yeoman-generator": "~0.13.0",
     "yo": "^1.0.0"
   },
   "devDependencies": {
@@ -48,9 +46,5 @@
     "node": ">=0.8.0",
     "npm": ">=1.2.10"
   },
-  "licenses": [
-    {
-      "type": "BSD"
-    }
-  ]
+  "license": "BSD-2-Clause"
 }
