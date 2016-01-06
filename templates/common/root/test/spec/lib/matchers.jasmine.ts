@@ -11,7 +11,6 @@ declare module jasmine {
 }
 
 beforeEach(function () {
-
   jasmine.addMatchers({
     toEqualData: () => ({compare: (actual, expected) => {
       return {pass: angular.equals(actual, expected)};
