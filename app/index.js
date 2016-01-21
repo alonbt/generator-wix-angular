@@ -417,11 +417,8 @@ Generator.prototype.packageFiles = function packageFiles() {
     .replace('{{projectOwnerGroupId}}', owner.groupId)
     .replace('{{projectOwnerDescription}}', owner.description));
 
-  var replace = this.read('../../templates/common/replace.conf.js', 'utf8').replace(/\$\{/g, '(;$};)');
-  this.write('replace.conf.js', this.engine(replace, this).replace(/\(;\$\};\)/g, '${'));
-
-  replace = this.read('../../templates/common/replace.private.conf.js', 'utf8').replace(/\$\{/g, '(;$};)');
-  this.write('replace.private.conf.js', this.engine(replace, this).replace(/\(;\$\};\)/g, '${'));
+  this.template('../../templates/common/velocity.data.js', 'velocity.data.js');
+  this.template('../../templates/common/velocity.private.data.js', 'velocity.private.data.js');
 
   if (this.dashboardApp || !this.dashboardWidget) {
     this.cameledName = this.scriptAppName;
