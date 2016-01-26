@@ -1,8 +1,8 @@
-.container(ng-click="<%= scriptAppName %>.onClick()")
+.container(ng-click="$ctrl.onClick()")
   .hero-unit
     %h1
       {{'general.YO' | translate}}
       %i.logo-on-header.<%= _.slugify(_.humanize(appname)) %>-svg-font-icons-wix-logo
     %div
-      This is {{<%= scriptAppName %>.name}} ({{<%= scriptAppName %>.clicks}})
+      This is {{$ctrl.name}} ({{$ctrl.clicks}})
     %h3 Enjoy coding! - Yeoman
