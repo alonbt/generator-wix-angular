@@ -23,7 +23,7 @@ class <%= classedName %> {
 angular
   .module('<%= scriptAppName %>Internal')
   .component('<%= cameledName %>', {
-    <% if (templateUrl) { %>templateUrl: '<%= templateUrl %>',<% } else { %>template: '<div ng-click="<%= cameledName %>.onClick()">This is {{<%= cameledName %>.name}} ({{<%= cameledName %>.clicks}})</div>',<% } %>
+    <% if (templateUrl) { %>templateUrl: '<%= templateUrl %>',<% } else { %>template: '<div ng-click="$ctrl.onClick()">This is {{$ctrl.name}} ({{$ctrl.clicks}})</div>',<% } %>
     controller: <%= classedName %>,
     bindings: {
       name: '='
